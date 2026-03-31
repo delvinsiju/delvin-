@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IoT Construction Dashboard</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0f0f0f;
+      color: #e0e0e0;
+    }
+
+    header {
+      background: #1a1a1a;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+    }
+
+    header h1 {
+      color: #00adb5;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #00adb5;
+    }
+
+    .value {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .status-safe {
+      color: #4caf50;
+    }
+
+    .status-danger {
+      color: #ff4c4c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #1a1a1a;
+      margin-top: 20px;
+      border-top: 1px solid #333;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>IoT Construction Dashboard</h1>
+  <p>Live Monitoring System</p>
+</header>
+
+<div class="container">
+
+  <section class="card">
+    <h3>What is IoT in Construction?</h3>
+    <p>
+      The Internet of Things (IoT) in construction refers to the use of smart devices, sensors, and connected technologies to monitor, manage, and improve construction activities in real time. These devices collect data such as temperature, humidity, vibration, and worker movement, which is then transmitted to cloud platforms or web dashboards for analysis.
+    </p>
+    <br>
+    <p>
+      IoT helps construction companies increase safety, efficiency, and productivity. For example, wearable devices like smart helmets can detect accidents and send alerts, while sensors can monitor structural conditions and environmental factors. This reduces risks, prevents delays, and improves decision-making.
+    </p>
+    <br>
+    <p>
+      Overall, IoT is transforming the construction industry by enabling smarter, data-driven operations and creating safer working environments.
+    </p>
+  </section>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Temperature</h3>
+      <p class="value" id="temp">-- °C</p>
+    </div>
+
+    <div class="card">
+      <h3>Humidity</h3>
+      <p class="value" id="humidity">-- %</p>
+    </div>
+
+    <div class="card">
+      <h3>Vibration</h3>
+      <p class="value" id="vibration">--</p>
+    </div>
+
+    <div class="card">
+      <h3>Worker Safety</h3>
+      <p class="value status-safe" id="safety">Safe</p>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Delvin Siju | IoT Construction System</p>
+</footer>
+
+<script>
+  // Simulated IoT Data (Replace with real API later)
+  function updateData() {
+    const temp = (20 + Math.random() * 15).toFixed(1);
+    const humidity = (40 + Math.random() * 40).toFixed(1);
+    const vibration = (Math.random() * 5).toFixed(2);
+
+    document.getElementById("temp").innerText = temp + " °C";
+    document.getElementById("humidity").innerText = humidity + " %";
+    document.getElementById("vibration").innerText = vibration;
+
+    const safety = document.getElementById("safety");
+
+    if (temp > 35 || vibration > 3) {
+      safety.innerText = "Danger";
+      safety.className = "value status-danger";
+    } else {
+      safety.innerText = "Safe";
+      safety.className = "value status-safe";
+    }
+  }
+
+  setInterval(updateData, 2000);
+</script>
+
+</body>
+</html>
+
